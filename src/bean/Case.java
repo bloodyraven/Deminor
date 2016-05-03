@@ -16,7 +16,7 @@ public class Case {
 	private Game g;
 	private Dimension d;
 	
-	public Case(Game g) {
+	public Case(Game g, Dimension d) {
 		this.setG(g);
 		this.mine=false;
 		this.flag=false;
@@ -24,7 +24,7 @@ public class Case {
 		this.nbVoisins=0;
 		this.button=new Button();
 		button.addMouseListener(new ButtonListener());
-		this.d = getXY(this);
+		this.d = d;
 	}
 
 	public boolean isMine() {
@@ -64,20 +64,8 @@ public class Case {
 		}
 	}
 	
-	public Dimension getXY(Case c) {
-		Case[][] grille = g.getGrille();
-		for (int i = 0; i < grille.length; i++) {
-			for (int j = 0; j < grille[0].length; j++) {
-				if(c.equals(grille[i][j])) {
-					return new Dimension(i, j);
-				}
-			}
-		}
-		return null;
-	}
-	
 	public void recursif(Dimension d) {
-		
+		g.recursif(d);
 	}
 
 	public Button getButton() {
